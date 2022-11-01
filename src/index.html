@@ -363,10 +363,10 @@
 	  return resp.json();
   }).then(function(result) {
     // Add this language.
-    form.addLanguage(lang, result[0].data.dataMap);
+    formio.addLanguage(lang, result[0].data.dataMap);
     
     // Set this language.
-    form.language = lang;
+    formio.language = lang;
   });
 
 
