@@ -10,6 +10,7 @@
                 <span class="navbar-brand mb-0 h1" id="form-title">
                     <img src="assets/logo.png" style="display: inline-block; height: 1.3em;" /> Form Viewer
                 </span>
+            
             </div>
         </nav>
     </script>
@@ -355,6 +356,20 @@
     }, true);
 
     Formio.icons = 'fontawesome';
+   
+    
+  // Fetch the language from the Resource.
+  Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language=' + 'sp').then(function(resp) {
+	  return resp.json();
+  }).then(function(result) {
+    // Add this language.
+    form.addLanguage(lang, result[0].data.translations);
+    
+    // Set this language.
+    form.language = lang;
+  });
+
+
     return Formio.createForm(formioElem, form, options).then(function(instance) {
       if (preFormElem) {
         // Remove the entire preform element.
