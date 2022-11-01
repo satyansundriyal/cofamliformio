@@ -360,20 +360,7 @@
 
     Formio.icons = 'fontawesome';
    
-    var lang='es-es';
-  // Fetch the language from the Resource.
-  Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language=es-es').then(function(resp) {
-    debugger;
-	  return resp.json();
-  }).then(function(result) {
-    debugger;
-    // Add this language.
-    form.addLanguage(lang, result[0].data.dataMap);
-    
-    // Set this language.
-    form.language = lang;
-  });
-
+ 
 
     return Formio.createForm(formioElem, form, options).then(function(instance) {
       if (preFormElem) {
@@ -387,6 +374,19 @@
         instance.url = form.src;
         instance.nosubmit = false;
       }
+      var lang='es-es';
+  // Fetch the language from the Resource.
+  Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language=es-es').then(function(resp) {
+    debugger;
+	  return resp.json();
+  }).then(function(result) {
+    debugger;
+    // Add this language.
+    instance.addLanguage(lang, result[0].data.dataMap);
+    
+    // Set this language.
+    instance.language = lang;
+  });
 
       if (titleElem) {
         titleElem.innerHTML = instance.form.title;
