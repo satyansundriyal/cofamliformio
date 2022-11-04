@@ -307,7 +307,7 @@
   var formioElem = null;
   var pageBreak = false;
   preFormElem.innerHTML = loader.innerHTML;
-  var submissionData=null;
+  //var submissionData=null;
   var createFormPage = function(form, submission, options) {
     debugger;
     preFormElem.innerHTML = loader.innerHTML;
@@ -334,13 +334,13 @@
         if (!submission && formio.submissionId) {
           formio.loadSubmission().then(function(subObj) {
             formObj.src = form;
-            submissionData=subObj;
+           // submissionData=subObj;
             window.setForm(formObj, subObj, options);
           });
         }
         else {
           formObj.src = form;
-          submissionData=submission;
+         // submissionData=submission;
           window.setForm(formObj, submission, options);
         }
       });
@@ -377,7 +377,7 @@
         instance.url = form.src;
         instance.nosubmit = false;
       }
-      var lang= submissionData.data.Language;
+      var lang= submission.data.Language;
       
       if( lang=='es-es')
       {
