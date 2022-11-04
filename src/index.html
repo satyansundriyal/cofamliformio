@@ -379,12 +379,6 @@
       }
     
       // Fetch the language from the Resource.
-       
-         
-        if (lang='es-es')
-        {
-          lang='sp';
-        }
           Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language=es-es').then(function(resp) {
             debugger;
             return resp.json();
@@ -396,7 +390,7 @@
             // Set this language.
             instance.language ='sp';
           });
-         
+      
       if (titleElem) {
         titleElem.innerHTML = instance.form.title;
       }
