@@ -377,18 +377,22 @@
         instance.url = form.src;
         instance.nosubmit = false;
       }
-    
+    var lang=submission.data.correspondenceLanguage;
+
       // Fetch the language from the Resource.
-          Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language=es-es').then(function(resp) {
+          Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language='+lang).then(function(resp) {
             debugger;
             return resp.json();
           }).then(function(result) {
-            
+             if (lang=='es-es')
+             {
+              lang='sp';
+             }
             debugger;
             // Add this language.
-            instance.addLanguage('sp', result[0].data.dataMap);
+            instance.addLanguage(lang, result[0].data.dataMap);
             // Set this language.
-            instance.language ='sp';
+            instance.language =lang;
           });
       
       if (titleElem) {
