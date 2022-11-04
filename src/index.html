@@ -378,21 +378,24 @@
         instance.nosubmit = false;
       }
       var lang= submissionData.data.Language;
+      
       if( lang=='es-es')
       {
         lang='sp';
       }
       // Fetch the language from the Resource.
-      Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language='+lang).then(function(resp) {
+      //Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language='+lang).then(function(resp) {
+        
+      Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language=es-es').then(function(resp) {
         debugger;
         return resp.json();
       }).then(function(result) {
+        
         debugger;
         // Add this language.
-        instance.addLanguage(lang, result[0].data.dataMap);
-        
+        instance.addLanguage('sp', result[0].data.dataMap);
         // Set this language.
-        instance.language =lang;
+        instance.language ='sp';
       });
 
       if (titleElem) {
