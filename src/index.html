@@ -309,59 +309,59 @@
   preFormElem.innerHTML = loader.innerHTML;
   
   var createFormPage = function(form, submission, options) {
-    debugger;
-    preFormElem.innerHTML = loader.innerHTML;
-    options = options || {};
-    if (!form) {
-      console.warn('No form object provided');
-    }
-    debugger;
-    // Create the formio element.
-    if (formioElem) {
-      pageBreak = true;
-    }
-    formioElem = document.createElement('div');
-    if (pageBreak) {
-      formioElem.setAttribute('class', 'page-break-before');
-    }
-    debugger;
-    mainElem.appendChild(formioElem);
+          debugger;
+          preFormElem.innerHTML = loader.innerHTML;
+          options = options || {};
+          if (!form) {
+            console.warn('No form object provided');
+          }
+          debugger;
+          // Create the formio element.
+          if (formioElem) {
+            pageBreak = true;
+          }
+          formioElem = document.createElement('div');
+          if (pageBreak) {
+            formioElem.setAttribute('class', 'page-break-before');
+          }
+          debugger;
+          mainElem.appendChild(formioElem);
 
-    // If the form is a string, then load it first and then try again.
-    if (typeof form === 'string') {
-      var formio = new Formio(form);
-      formio.loadForm().then(function(formObj) {
-        if (!submission && formio.submissionId) {
-          formio.loadSubmission().then(function(subObj) {
-            formObj.src = form;
-           
-            window.setForm(formObj, subObj, options);
-          });
-        }
-        else {
-          formObj.src = form;
-         
-          window.setForm(formObj, submission, options);
-        }
-      });
-      return;
-    }
+          // If the form is a string, then load it first and then try again.
+          if (typeof form === 'string') {
+            var formio = new Formio(form);
+            formio.loadForm().then(function(formObj) {
+              if (!submission && formio.submissionId) {
+                formio.loadSubmission().then(function(subObj) {
+                  formObj.src = form;
+                
+                  window.setForm(formObj, subObj, options);
+                });
+              }
+              else {
+                formObj.src = form;
+              
+                window.setForm(formObj, submission, options);
+              }
+            });
+            return;
+          }
 
-    options.show = {};
-    options.hide = {};
-    debugger;
-    FormioUtils.eachComponent(form.components, function(component) {
-      if (component.tags && component.tags.length) {
-        if (component.tags.includes('viewer:show')) {
-          options.show[component.key] = true;
-        }
-        if (component.tags.includes('viewer:hide')) {
-          options.hide[component.key] = true;
-        }
-      }
-    }, true);
+          options.show = {};
+          options.hide = {};
+          debugger;
+          FormioUtils.eachComponent(form.components, function(component) {
+            if (component.tags && component.tags.length) {
+              if (component.tags.includes('viewer:show')) {
+                options.show[component.key] = true;
+              }
+              if (component.tags.includes('viewer:hide')) {
+                options.hide[component.key] = true;
+              }
+            }
+          }, true);
 
-    Formio.icons = 'fontawesome';
+          Formio.icons = 'fontawesome';
    
 
     return Formio.createForm(formioElem, form, options).then(function(instance) {
@@ -378,23 +378,6 @@
       }
      
   
-        var lang='ch';
-
-      // Fetch the language from the Resource.
-          Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language='+lang).then(function(resp) {
-            debugger;
-            return resp.json();
-          }).then(function(result) {
-               if (lang=='es-es') {
-              lang='sp';
-              }
-              debugger;
-              // Add this language.
-              instance.addLanguage(lang, result[0].data.dataMap);
-              // Set this language.
-              instance.language =lang;
-          });
-      
       
       if (titleElem) {
         titleElem.innerHTML = instance.form.title;
@@ -406,6 +389,28 @@
       return new Formio.Promise(function(resolve) {
         instance.setSubmission(submission).then(function() {
           instance.dataReady.then(function() {
+
+
+            var lang=instance.data.correspondenceLanguage ;//'ch';
+
+// Fetch the language from the Resource.
+    Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language='+lang).then(function(resp) {
+      debugger;
+      return resp.json();
+    }).then(function(result) {
+         if (lang=='es-es') {
+        lang='sp';
+        }
+        debugger;
+        // Add this language.
+        instance.addLanguage(lang, result[0].data.dataMap);
+        // Set this language.
+        instance.language =lang;
+    });
+
+
+
+
             instance.checkData(instance.data, {
               noValidate: true
             });
