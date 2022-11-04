@@ -379,24 +379,26 @@
       }
     
       // Fetch the language from the Resource.
-        var lang=submission.data.correspondenceLanguage;
+       
+        if (!submission && formio.submissionId) {
+          formio.loadSubmission().then(function(submissionData) {}).then(function(){
+            var lang=submissionData.data.correspondenceLanguage;
         if (lang='es-es')
         {
           lang='sp';
         }
-        
-      Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language='+lang).then(function(resp) {
-        debugger;
-        return resp.json();
-      }).then(function(result) {
-        
-        debugger;
-        // Add this language.
-        instance.addLanguage(lang, result[0].data.dataMap);
-        // Set this language.
-        instance.language =lang;
-      });
-
+          Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language='+lang).then(function(resp) {
+            debugger;
+            return resp.json();
+          }).then(function(result) {
+            
+            debugger;
+            // Add this language.
+            instance.addLanguage(lang, result[0].data.dataMap);
+            // Set this language.
+            instance.language =lang;
+          });
+        });
       if (titleElem) {
         titleElem.innerHTML = instance.form.title;
       }
