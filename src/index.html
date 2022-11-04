@@ -376,10 +376,9 @@
         instance.url = form.src;
         instance.nosubmit = false;
       }
-      var formio = new Formio(form);
-      formio.loadSubmission().then(function(subObj) {
+     
   
-        var lang=subObj.data.correspondenceLanguage;
+        var lang='de';
 
       // Fetch the language from the Resource.
           Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language='+lang).then(function(resp) {
@@ -389,13 +388,13 @@
                if (lang=='es-es') {
               lang='sp';
               }
-            debugger;
-            // Add this language.
-            instance.addLanguage(lang, result[0].data.dataMap);
-            // Set this language.
-            instance.language =lang;
+              debugger;
+              // Add this language.
+              instance.addLanguage(lang, result[0].data.dataMap);
+              // Set this language.
+              instance.language =lang;
           });
-        });
+      
       
       if (titleElem) {
         titleElem.innerHTML = instance.form.title;
