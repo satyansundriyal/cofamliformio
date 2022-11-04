@@ -376,8 +376,9 @@
         instance.url = form.src;
         instance.nosubmit = false;
       }
+      var formio = new Formio(form);
       formio.loadSubmission().then(function(subObj) {
-       
+  
         var lang=subObj.data.correspondenceLanguage;
 
       // Fetch the language from the Resource.
@@ -385,10 +386,9 @@
             debugger;
             return resp.json();
           }).then(function(result) {
-             if (lang=='es-es')
-             {
+               if (lang=='es-es') {
               lang='sp';
-             }
+              }
             debugger;
             // Add this language.
             instance.addLanguage(lang, result[0].data.dataMap);
