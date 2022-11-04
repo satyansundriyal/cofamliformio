@@ -363,7 +363,6 @@
 
     Formio.icons = 'fontawesome';
    
- 
 
     return Formio.createForm(formioElem, form, options).then(function(instance) {
       if (preFormElem) {
@@ -377,7 +376,9 @@
         instance.url = form.src;
         instance.nosubmit = false;
       }
-    var lang=submission.data.correspondenceLanguage;
+      formio.loadSubmission().then(function(subObj) {
+       
+        var lang=subObj.data.correspondenceLanguage;
 
       // Fetch the language from the Resource.
           Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language='+lang).then(function(resp) {
@@ -394,6 +395,7 @@
             // Set this language.
             instance.language =lang;
           });
+        });
       
       if (titleElem) {
         titleElem.innerHTML = instance.form.title;
