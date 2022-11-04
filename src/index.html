@@ -385,8 +385,8 @@
       if (!submission) {
         return instance;
       }
-   /*   var lang=submission.data.correspondenceLanguage ;//'ch';
-
+     var lang=submission.data.senderName ;//'ch';
+if (lang=='Test Claimant'){lang='es-es';}
 // Fetch the language from the Resource.
     Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language='+lang).then(function(resp) {
       debugger;
@@ -401,7 +401,7 @@
         // Set this language.
         instance.language =lang;
     });
-*/
+ 
       return new Formio.Promise(function(resolve) {
         instance.setSubmission(submission).then(function() {
           instance.dataReady.then(function() {
@@ -419,22 +419,7 @@
   // is what the PDF renderer uses to generate a form with predefined form, submission, and options.
   window.setForm = function(form, submission, options) {
  
-    var lang=submission.data.correspondenceLanguage;
-      
-          Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language='+lang).then(function(resp) {
-            debugger;
-            return resp.json();
-          }).then(function(result) {
-            if (lang='es-es')
-            {
-              lang='sp';
-            }
-            debugger;
-            // Add this language.
-            form.addLanguage(lang, result[0].data.dataMap);
-            // Set this language.
-            form.language =lang;
-          });
+     
        
     if (Array.isArray(submission) && submission.length) {
       var promises = [];
