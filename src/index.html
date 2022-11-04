@@ -385,8 +385,8 @@
       if (!submission) {
         return instance;
       }
-     var lang=submission.data.senderName ;//'ch';
-if (lang=='Test Claimant'){lang='es-es';}
+     var lang=submission.data.correspondenceLanguage ;//'ch';
+     //if (lang=='Test Claimant'){lang='es-es';}
 // Fetch the language from the Resource.
     Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language='+lang).then(function(resp) {
       debugger;
