@@ -380,26 +380,23 @@
     
       // Fetch the language from the Resource.
        
-       /* if (!submission && formio.submissionId) {
-          formio.loadSubmission().then(function(submissionData) {}).then(function(){
-            var lang=submissionData.data.correspondenceLanguage;
+         
         if (lang='es-es')
         {
           lang='sp';
         }
-          Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language='+lang).then(function(resp) {
+          Formio.fetch('https://lfknwdujqmbyirm.form.io/correspondance/submission?data.language=sp'+lang).then(function(resp) {
             debugger;
             return resp.json();
           }).then(function(result) {
             
             debugger;
             // Add this language.
-            instance.addLanguage(lang, result[0].data.dataMap);
+            instance.addLanguage('sp', result[0].data.dataMap);
             // Set this language.
-            instance.language =lang;
+            instance.language ='sp';
           });
-         });
-        */
+         
       if (titleElem) {
         titleElem.innerHTML = instance.form.title;
       }
@@ -423,7 +420,7 @@
   // You must keep "window.setForm = function(form, submission, options)". This
   // is what the PDF renderer uses to generate a form with predefined form, submission, and options.
   window.setForm = function(form, submission, options) {
-
+/*
     var lang='sp';//submission.data.correspondenceLanguage;
         if (lang='es-es')
         {
@@ -440,7 +437,7 @@
             // Set this language.
             form.language =lang;
           });
-       
+       */
     if (Array.isArray(submission) && submission.length) {
       var promises = [];
       submission.forEach(function(sub) {
