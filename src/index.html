@@ -76,14 +76,15 @@
 
 .signature-left {
     text-align: left;
-    border-top: 1px solid black;
-    padding: 10px;
+    border-top: 1px solid black; 
+    border:0;
 }
 
 .signature-right {
     text-align: right;
     border-top: 1px solid black;
-    padding: 10px;
+    
+    border:0;
 }
       </style>
     <script type="text/javascript">
@@ -309,13 +310,13 @@
   preFormElem.innerHTML = loader.innerHTML;
   
   var createFormPage = function(form, submission, options) {
-          debugger;
+          
           preFormElem.innerHTML = loader.innerHTML;
           options = options || {};
           if (!form) {
             console.warn('No form object provided');
           }
-          debugger;
+         
           // Create the formio element.
           if (formioElem) {
             pageBreak = true;
@@ -324,7 +325,7 @@
           if (pageBreak) {
             formioElem.setAttribute('class', 'page-break-before');
           }
-          debugger;
+         
           mainElem.appendChild(formioElem);
 
           // If the form is a string, then load it first and then try again.
@@ -349,7 +350,7 @@
 
           options.show = {};
           options.hide = {};
-          debugger;
+          
           FormioUtils.eachComponent(form.components, function(component) {
             if (component.tags && component.tags.length) {
               if (component.tags.includes('viewer:show')) {
