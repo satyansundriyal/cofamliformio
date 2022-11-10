@@ -388,8 +388,10 @@
      var lang=submission.data.correspondenceLanguage ;
      var translationResource=submission.data.translationResource;
     // Fetch the language from the Resource.
-    Formio.fetch('https://lfknwdujqmbyirm.form.io/'+translationResource+'/submission?data.language='+lang).then(function(resp) {
-      return resp.json();
+   // Formio.fetch('https://lfknwdujqmbyirm.form.io/'+translationResource+'/submission?data.language='+lang).then(function(resp) {
+    Formio.fetch('https://ytcwjblphcikyac.form.io/'+translationResource+'/submission?data.language='+lang).then(function(resp) {
+      
+    return resp.json();
     }).then(function(result) {
     
       // Add this language.
